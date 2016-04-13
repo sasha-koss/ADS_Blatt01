@@ -1,35 +1,28 @@
+import java.io.IOException;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		int[] A = {4, -2, -2, -3, 1, 5, -2, 0, 1}; //A sei die zu betrachtende Folge
-		long starttime = System.nanoTime();
-		int n = A.length;
-		int maxsumme =	Integer.MIN_VALUE; // kleinste negative Integer - Zahl
-		int von=0;
-		int bis=0;
-		int summe=0;
-		int countadd=0;
-		for(int i = 0; i < n ;i++){
-			summe=0;
-			for(int ii=i; ii<n;ii++ ){
-				summe = summe+ A[ii];
-				countadd++;
-				if(summe>maxsumme) {
-					maxsumme=summe;
-					von=i;
-					bis=ii;
-					}
-			}
+		ReadFile x = new ReadFile();
+		MaxTeilsumme mT = new MaxTeilsumme();
+		try {
+			
+			System.out.println("30 Integer");
+			mT.calcMaxTeilsume(x.readFile("30.txt",30));
+			mT.printTeilsumme();
+			System.out.println(" ");
+			System.out.println("300 Integer");
+			mT.calcMaxTeilsume(x.readFile("300.txt",300));
+			mT.printTeilsumme();
+			System.out.println(" ");
+			System.out.println("3000 Integer");
+			mT.calcMaxTeilsume(x.readFile("3000.txt",3000));
+			mT.printTeilsumme();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		System.out.println("Vergangene Zeit in Nanosekunden:  " + (System.nanoTime() - starttime));
-		System.out.println("max . Teilsumme: " +maxsumme);
-		System.out.println("erster Index " +von);
-		System.out.println("letzter Index " +bis);
-		System.out.println("Anzahl Additionen " +countadd);
 		
 	}
 
