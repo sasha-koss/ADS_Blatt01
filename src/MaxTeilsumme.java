@@ -14,17 +14,19 @@ public class MaxTeilsumme {
 		bis=0;
 		countadd=0;
 		long starttime = System.nanoTime();
-		int n = A.length;	
-		for(int i = 0; i < n ;i++){
-			summe=0;
-			for(int ii=i; ii<n;ii++ ){
-				summe = summe+ A[ii];
-				countadd++;
-				if(summe>maxsumme) {
-					maxsumme=summe;
-					von=i;
-					bis=ii;
-					}
+		int n = A.length;
+		for (int i=0;i<n;i++){
+			for(int j = i; j < n ;j++){
+				summe=0;
+				for(int k=i; k<j;k++ ){
+					summe = summe+ A[k];
+					countadd++;
+					if(summe>maxsumme) {
+						maxsumme=summe;
+						von=i;
+						bis=j;
+						}
+				}
 			}
 		}
 		calcTime = System.nanoTime()-starttime;
@@ -32,7 +34,9 @@ public class MaxTeilsumme {
 	
 	public void printTeilsumme(){
 		
-		System.out.println("Vergangene Zeit in Nanosekunden:  " + calcTime);
+		float calcTimeMS = calcTime;
+		calcTimeMS = (calcTimeMS/1000000);;
+		System.out.println("Vergangene Zeit in Millisekunden:  " + calcTimeMS);
 		System.out.println("max . Teilsumme: " +maxsumme);
 		System.out.println("erster Index " +von);
 		System.out.println("letzter Index " +bis);
